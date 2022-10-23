@@ -11,7 +11,7 @@
     
     <div class="container">
         <div class="text">নিবন্ধন করুন</div>
-        <form action="https://formsubmit.co/61a6e8f8a4553f5f11285411e6c78d2a" method="POST">
+        <form name="google-sheet" action="https://formsubmit.co/61a6e8f8a4553f5f11285411e6c78d2a" method="POST">
 <!-- Disable Captcha -->
   <input type="hidden" name="_captcha" value="false">
 
@@ -70,6 +70,22 @@
            </div>
         </form>
      </div>
+
+
+     <!-- ------scripting area----- -->
+     <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+
+      <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbyfHyTb2qvz2iERitwiUpYULKTVC8APGu3ioHf-CIjCzqhQESo49skP0EuuuWREJ1ac/exec'
+      const form = document.forms['google-sheet']
+    
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
 
 </body>
 
